@@ -1,0 +1,14 @@
+{
+  "domain": "lacrosseview",
+  "name": "hass-lacrosseview",
+  "documentation": "https://github.com/regulad/hass-lacrosseview",
+  "dependencies": [],
+  "codeowners": [
+    "regulad"
+  ],
+  "version": "0.1.0",
+  "requirements": [
+    "pylacrosseview==0.1.2"
+  ],
+  "iot_class": "cloud_polling"
+}
