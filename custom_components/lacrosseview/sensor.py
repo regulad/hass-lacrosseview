@@ -4,7 +4,8 @@ import homeassistant.helpers.config_validation as cv
 import voluptuous
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import TEMP_FAHRENHEIT, CONF_USERNAME, CONF_PASSWORD, TEMP_CELSIUS
-from homeassistant.helpers.entity import Entity
+from homeassistant.helpers.device_registry import DeviceEntryType
+from homeassistant.helpers.entity import Entity, DeviceInfo
 
 REQUIREMENTS = ['pylacrosseview==0.1.2']
 
@@ -38,6 +39,19 @@ class LaCrosseViewSensor(Entity):
     def update(self) -> None:
         states = self._lacrosse_device.states()
         self._state = states[self._field][-1].value
+
+    @property
+    def unique_id(self) -> str:
+        return f"{self._lacrosse_device.id}_{self._field}"
+
+    @property
+    def device_info(self) -> DeviceInfo:
+        return DeviceInfo(
+            identifiers={("lacrosse", self._lacrosse_device.id)},
+            model=self._lacrosse_device.sensor_type,
+            manufacturer="LaCrosse",
+            name=self._lacrosse_device.name.replace('_', ' ').title(),
+        )
 
     @property
     def name(self):
