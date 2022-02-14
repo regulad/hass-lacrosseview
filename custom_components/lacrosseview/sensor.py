@@ -1,10 +1,12 @@
 import logging
+from typing import Optional
 
 import homeassistant.helpers.config_validation as cv
 import voluptuous
 from homeassistant.components.sensor import PLATFORM_SCHEMA
-from homeassistant.const import TEMP_FAHRENHEIT, CONF_USERNAME, CONF_PASSWORD, TEMP_CELSIUS
-from homeassistant.helpers.device_registry import DeviceEntryType
+from homeassistant.const import (
+    TEMP_FAHRENHEIT, CONF_USERNAME, CONF_PASSWORD, TEMP_CELSIUS, DEVICE_CLASS_HUMIDITY, DEVICE_CLASS_TEMPERATURE
+)
 from homeassistant.helpers.entity import Entity, DeviceInfo
 
 REQUIREMENTS = ['pylacrosseview==0.1.2']
@@ -62,7 +64,16 @@ class LaCrosseViewSensor(Entity):
         return self._state
 
     @property
-    def unit_of_measurement(self):
+    def device_class(self) -> Optional[str]:
+        if self._field.unit == "degrees_celsius" or self._field.unit == "degrees_fahrenheit":
+            return DEVICE_CLASS_TEMPERATURE
+        elif self._field.unit == "relative_humidity":
+            return DEVICE_CLASS_HUMIDITY
+        else:
+            return None
+
+    @property
+    def unit_of_measurement(self) -> str:
         if self._field.unit == "degrees_celsius":
             return TEMP_CELSIUS
         elif self._field.unit == "degrees_fahrenheit":
