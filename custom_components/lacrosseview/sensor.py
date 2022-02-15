@@ -13,7 +13,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from . import LaCrosseViewSensor, DOMAIN
 
-REQUIREMENTS = ['pylacrosseview==0.1.2']
+REQUIREMENTS = ['pylacrosseview==0.1.4']
 
 _LOGGER = logging.getLogger(__name__)
 

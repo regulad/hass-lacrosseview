@@ -90,6 +90,6 @@ async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> 
     )
 
     # Clean up.
-    hass.data[DOMAIN].pop(unique_id)
+    hass.data[DOMAIN].pop(unique_id).close()
 
     return unload_ok
