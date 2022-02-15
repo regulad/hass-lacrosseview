@@ -10,11 +10,4 @@
 
 4. Configure the integration
 
-Simply add the following segment to your `configuration.yaml`:
-
-```yaml
-sensor:
-  - platform: lacrosseview
-    username: regulad@regulad.xyz # Your email
-    password: mypassword          # Your password
-```
+Search for **LaCrosse** in the **Integrations** section of Home Assistant.
