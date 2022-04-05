@@ -1,4 +1,4 @@
-"""Config flow for Minecraft Server integration."""
+"""Config flow for LaCrosse View integration."""
 from functools import partial
 
 import voluptuous as vol
