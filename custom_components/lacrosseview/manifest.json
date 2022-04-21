@@ -5,7 +5,7 @@
   "issue_tracker": "https://github.com/regulad/hass-lacrosseview/issues",
   "dependencies": [],
   "codeowners": [
-    "regulad"
+    "@regulad"
   ],
   "version": "0.1.2",
   "requirements": [
