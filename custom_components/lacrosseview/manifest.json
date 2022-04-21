@@ -2,6 +2,7 @@
   "domain": "lacrosseview",
   "name": "La Crosse View",
   "documentation": "https://github.com/regulad/hass-lacrosseview",
+  "issue_tracker": "https://github.com/regulad/hass-lacrosseview/issues",
   "dependencies": [],
   "codeowners": [
     "regulad"
