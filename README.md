@@ -11,3 +11,10 @@
 4. Configure the integration
 
 Search for **LaCrosse** in the **Integrations** section of Home Assistant.
+
+## Supported devices
+
+Any devices reporting to La Crosse cloud are supported. They are sold under more brands:
+
+* [La Crosse View](https://www.lacrossetechnology.com/pages/la-crosse-view)
+* [TFA View](https://www.tfa-dostmann.de/en/produkte/weather-stations/wifi-weather-stations/)
