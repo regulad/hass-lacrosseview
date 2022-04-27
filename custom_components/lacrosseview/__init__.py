@@ -2,11 +2,12 @@
 from functools import partial
 from typing import Optional
 
+from homeassistant.components.sensor import SensorEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import DEVICE_CLASS_TEMPERATURE, TEMP_CELSIUS, TEMP_FAHRENHEIT, DEVICE_CLASS_HUMIDITY, \
     CONF_PASSWORD, CONF_USERNAME, Platform
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers.entity import DeviceInfo, Entity
+from homeassistant.helpers.entity import DeviceInfo
 from pylacrosseview import Device, Field, WeatherStation
 
 from .const import DOMAIN
@@ -24,7 +25,7 @@ def device_info_of(device: Device) -> DeviceInfo:
     )
 
 
-class LaCrosseViewSensor(Entity):
+class LaCrosseViewSensor(SensorEntity):
     def __init__(self, lacrosse_device: Device, field: Field):
         self._lacrosse_device = lacrosse_device
         self._field = field
