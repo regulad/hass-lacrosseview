@@ -1,4 +1,5 @@
 import logging
+from datetime import timedelta
 from functools import partial
 
 import homeassistant.helpers.config_validation as cv
@@ -22,6 +23,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     voluptuous.Required(CONF_PASSWORD): cv.string,
 })
 
+SCAN_INTERVAL = timedelta(seconds=60)
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback):
     entities = []
