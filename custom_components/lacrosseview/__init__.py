@@ -1,6 +1,7 @@
 """LaCrosse View component for Home Assistant."""
 from functools import partial
 from typing import Optional
+import time
 
 from homeassistant.components.sensor import SensorEntity, SensorStateClass
 from homeassistant.config_entries import ConfigEntry
@@ -26,15 +27,19 @@ def device_info_of(device: Device) -> DeviceInfo:
 
 
 class LaCrosseViewSensor(SensorEntity):
-    def __init__(self, lacrosse_device: Device, field: Field):
+    def __init__(self, hass: HomeAssistant, lacrosse_device: Device, field: Field):
         self._lacrosse_device = lacrosse_device
         self._field = field
         self._attr_state_class = SensorStateClass.MEASUREMENT
         self._state = None
+        self._hass = hass
 
     def update(self) -> None:
-        states = self._lacrosse_device.states()
-        self._state = states[self._field][-1].value
+        states = self._lacrosse_device.states(time_zone=self._hass.config.time_zone, start=time.time() - 3600)
+        try:
+            self._state = states[self._field][-1].value
+        except IndexError:
+            self._state = None
 
     @property
     def unique_id(self) -> str:
@@ -51,6 +56,10 @@ class LaCrosseViewSensor(SensorEntity):
     @property
     def state(self):
         return self._state
+
+    @property
+    def available(self):
+        return self._state is not None
 
     @property
     def device_class(self) -> Optional[str]:
