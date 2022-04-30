@@ -2,7 +2,7 @@
 from functools import partial
 from typing import Optional
 
-from homeassistant.components.sensor import SensorEntity
+from homeassistant.components.sensor import SensorEntity, SensorStateClass
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import DEVICE_CLASS_TEMPERATURE, TEMP_CELSIUS, TEMP_FAHRENHEIT, DEVICE_CLASS_HUMIDITY, \
     CONF_PASSWORD, CONF_USERNAME, Platform
@@ -29,6 +29,7 @@ class LaCrosseViewSensor(SensorEntity):
     def __init__(self, lacrosse_device: Device, field: Field):
         self._lacrosse_device = lacrosse_device
         self._field = field
+        self._attr_state_class = SensorStateClass.MEASUREMENT
         self._state = None
 
     def update(self) -> None:
