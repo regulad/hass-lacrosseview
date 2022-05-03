@@ -31,5 +31,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
     for device in ws.devices:
         states = await hass.loop.run_in_executor(None, partial(device.states))
         for field in states.keys():
-            entities.append(LaCrosseViewSensor(device, field))
+            entities.append(LaCrosseViewSensor(hass, device, field))
     async_add_entities(entities)
