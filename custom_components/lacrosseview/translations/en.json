@@ -1,0 +1,20 @@
+{
+  "config": {
+    "title": "La Crosse View",
+    "step": {
+      "user": {
+        "title": "Fill in your La Crosse credentials",
+        "data": {
+          "username": "Username",
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "auth_error": "La Crosse View authentication failed. Are your credentials correct?"
+    },
+    "abort": {
+      "already_configured": "La Crosse View is already configured"
+    }
+  }
+}
