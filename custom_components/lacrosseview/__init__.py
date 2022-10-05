@@ -54,7 +54,7 @@ class LaCrosseViewSensor(SensorEntity):
         return f"{self._lacrosse_device.name.replace('_', ' ').title()} {self._field}"
 
     @property
-    def state(self):
+    def native_value(self):
         return self._state
 
     @property
@@ -71,7 +71,7 @@ class LaCrosseViewSensor(SensorEntity):
             return None
 
     @property
-    def unit_of_measurement(self) -> str:
+    def native_unit_of_measurement(self) -> str:
         if self._field.unit == "degrees_celsius":
             return TEMP_CELSIUS
         elif self._field.unit == "degrees_fahrenheit":
