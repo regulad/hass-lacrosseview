@@ -87,7 +87,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     ws = WeatherStation()
     uuid = entry.data[CONF_USERNAME]
     await hass.loop.run_in_executor(None, partial(ws.start, entry.data[CONF_USERNAME], entry.data[CONF_PASSWORD]))
-    hass.config_entries.async_setup_platforms(entry, PLATFORMS)
+    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     domain_data[uuid] = ws
     return True
 
